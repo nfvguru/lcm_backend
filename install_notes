@@ -1,0 +1,4 @@
+virtualenv lcm_backend
+cd lcm_backend
+scripts/activate
+pip install falcon
