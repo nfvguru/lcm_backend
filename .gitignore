@@ -1,3 +1,5 @@
 lcm_backend/lib
 lcm_backend/Scripts
 lcm_backend/pyvenv.cfg
+*__pycache__*
+lcm_backend/share

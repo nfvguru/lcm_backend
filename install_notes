@@ -2,3 +2,9 @@ virtualenv lcm_backend
 cd lcm_backend
 scripts/activate
 pip install falcon
+pip install ipython
+pip install waitress
+waitress-serve --port=9000 lcm_backend.app:app
+pip install boto3
+pip install awscli
+aws configure --profile rad1
