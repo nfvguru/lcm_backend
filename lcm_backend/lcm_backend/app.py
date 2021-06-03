@@ -1,8 +1,8 @@
 import falcon
-from .backend_ctrl import MainCtrl
+from .backend_ctrl import InstanceCtrl
 
 app = application = falcon.App()
 
 
-main_ctrl = MainCtrl()
-app.add_route('/instance',main_ctrl)
+instance_ctrl = InstanceCtrl()
+app.add_route('/instance',instance_ctrl)
