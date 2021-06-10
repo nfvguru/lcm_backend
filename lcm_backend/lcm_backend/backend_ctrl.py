@@ -20,6 +20,7 @@ class InstanceCtrl:
             F1={'Name':'tag:Name','Values':myvalues}
             myfilters.append(F1)
             resp=my_lc.list_instances(myfilters)
+            resp["error_code"]=0
         elif op == '2':
             resp["error_code"]=200
         else:
@@ -31,6 +32,7 @@ class InstanceCtrl:
         #op_res = {'operation':'create_instance','status':'fail', 'error':'Not Authenticated' }
         qs = falcon.uri.parse_query_string(req.query_string)
         opres={}
+        # print(req.query_string)
         if "op" in qs:
             myop = qs["op"]
             opres =self.do_operation(myop,qs)
