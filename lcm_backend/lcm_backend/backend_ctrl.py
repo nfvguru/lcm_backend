@@ -11,7 +11,7 @@ class InstanceCtrl:
     def do_operation(self, op, qs):
         my_lc=LavaAws()
         resp={}
-        if op == '1':
+        if op == 'aws':
             myfilters=[]
             myvalues=['lava_srvr']
             if 'values' in qs:
@@ -19,12 +19,28 @@ class InstanceCtrl:
                     myvalues.append(value)
             F1={'Name':'tag:Name','Values':myvalues}
             myfilters.append(F1)
-            resp=my_lc.list_instances(myfilters)
+            # Commeting temporarily
+            # resp=my_lc.list_instances(myfilters)
+            resp["instances"] = [{'ImageId': 'ami-65383lava',
+                                  'InstanceId': 'i-0aa518a7e5d43lava',
+                                  'InstanceType': 't1.micro',
+                                  'Tags': [{'Key':'Name', 'Value': 'amazonVM1'}],
+                                  'State': {'Code': '80', 'Name':'running'}}]
             resp["error_code"]=0
-        elif op == '2':
-            resp["error_code"]=200
+        elif op == 'gcp':
+            resp["instances"] = [{'ImageId': 'gcp-11223232',
+                                  'InstanceId': 'gcp-0aa518a7e5d43',
+                                  'InstanceType': 't1.micro',
+                                  'Tags': [{'Key':'Name', 'Value': 'gcpVM1'}],
+                                  'State': {'Code': '80', 'Name':'stopped'}}]
+            resp["error_code"]=0
         else:
-            resp["error_code"]=300
+            resp["instances"] = [{'ImageId': 'azure-11223232',
+                                  'InstanceId': 'azure-0aa518a7e5d43',
+                                  'InstanceType': 't1.micro',
+                                  'Tags': [{'Key':'Name', 'Value': 'azureVM1'}],
+                                  'State': {'Code': '80', 'Name':'stopped'}}]
+            resp["error_code"]=0
         return resp
 
 
