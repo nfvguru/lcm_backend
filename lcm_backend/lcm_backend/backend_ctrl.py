@@ -4,14 +4,16 @@ from pprint import pprint
 #from .lawscli import LawsCli
 #from .testmodule import TestModule
 from .LavaAws import LavaAws
+from .LavaAzure import LavaAzure
 
 
 class InstanceCtrl:
 
     def do_operation(self, op, qs):
-        my_lc=LavaAws()
+
         resp={}
         if op == 'aws':
+            my_lc=LavaAws()
             myfilters=[]
             myvalues=['lava_srvr']
             if 'values' in qs:
@@ -33,6 +35,14 @@ class InstanceCtrl:
                                   'InstanceType': 't1.micro',
                                   'Tags': [{'Key':'Name', 'Value': 'gcpVM1'}],
                                   'State': {'Code': '80', 'Name':'stopped'}}]
+            resp["error_code"]=0
+        elif op == 'azure':
+            my_lc=LavaAzure()
+            myfilters=['lava']
+            if 'values' in qs:
+                for value in qs['values']:
+                    myfilters.append(value)
+            resp=my_lc.list_instances(myfilters)
             resp["error_code"]=0
         else:
             resp["instances"] = [{'ImageId': 'azure-11223232',

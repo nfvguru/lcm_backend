@@ -8,3 +8,7 @@ waitress-serve --port=9000 lcm_backend.app:app
 pip install boto3
 pip install awscli
 aws configure --profile rad1
+
+---  For Azure
+pip install azure-mgmt-compute
+pip install azure-identity
